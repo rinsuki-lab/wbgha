@@ -21,7 +21,9 @@ jobs:
         ref: "20240724"
         path: libinotify-kqueue
     - name: Install Dependencies
-      run: brew install bison mingw-w64 autoconf automake libtool ffmpeg
+      run: |
+        brew install bison mingw-w64 autoconf automake libtool ffmpeg
+        brew install --cask gstreamer-development
     - name: Install libinotify-kqueue
       working-directory: libinotify-kqueue
       run: |
