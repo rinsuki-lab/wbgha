@@ -18,6 +18,7 @@ jobs:
       working-directory: wine
       # https://github.com/Gcenx/macOS_Wine_builds?tab=readme-ov-file#configure-options
       run: |
+        export PATH="$(brew --prefix bison)/bin:$PATH"
         ./configure --build=x86_64-apple-darwin \
         --enable-archs=i386,x86_64 \
         --disable-tests \
