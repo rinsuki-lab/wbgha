@@ -14,9 +14,22 @@ jobs:
         repository: "wine-mirror/wine"
         ref: "wine-10.6"
         path: wine
+    - name: Checkout libinotify-kqueue
+      uses: actions/checkout@v4
+      with:
+        repository: "libinotify-kqueue/libinotify-kqueue"
+        ref: "20240724"
+        path: libinotify-kqueue
     - name: Install Dependencies
       run: brew install bison mingw-w64
-    - name: Configure
+    - name: Install libinotify-kqueue
+      working-directory: libinotify-kqueue
+      run: |
+        autoreconf -fvi
+        ./configure --prefix=/usr/local
+        make -j$(sysctl -n hw.logicalcpu)
+        make install
+    - name: Configure wine
       working-directory: wine
       # https://github.com/Gcenx/macOS_Wine_builds?tab=readme-ov-file#configure-options
       run: |
