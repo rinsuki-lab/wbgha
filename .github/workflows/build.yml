@@ -21,12 +21,12 @@ jobs:
         ref: "20240724"
         path: libinotify-kqueue
     - name: Install Dependencies
-      run: brew install bison mingw-w64
+      run: brew install bison mingw-w64 autoconf
     - name: Install libinotify-kqueue
       working-directory: libinotify-kqueue
       run: |
         autoreconf -fvi
-        ./configure --prefix=/usr/local
+        ./configure --prefix=/usr/local --build=x86_64-apple-darwin
         make -j$(sysctl -n hw.logicalcpu)
         make install
     - name: Configure wine
