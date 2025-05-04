@@ -28,7 +28,7 @@ jobs:
         autoreconf -fvi
         ./configure --prefix=/usr/local --build=x86_64-apple-darwin
         make -j$(sysctl -n hw.logicalcpu)
-        make install
+        sudo make install
     - name: Configure wine
       working-directory: wine
       # https://github.com/Gcenx/macOS_Wine_builds?tab=readme-ov-file#configure-options
